@@ -72,13 +72,15 @@ document.getElementById('btn-create').addEventListener('click', () => {
   const data = {
     productId: document.getElementById("input-new-product-id").value,
     name: document.getElementById("input-new-product-name").value
-  }
+  };
+  const token = localStorage.getItem('id_token');
   fetch('http://localhost:3000/products', {
     cache: 'no-store',
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
     }
   })
     .then(response => response.json())
